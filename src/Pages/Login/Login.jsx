@@ -12,9 +12,7 @@ const Login = () => {
     return (
         <div className="hero min-h-screen ">
             <div className="my-36 lg:my-0 hero-content flex-col lg:flex-row-reverse border border-red-600 rounded-2xl glass-bg lg:w-1/3">
-                {/* <div className="w-2/3 ">
-                    <Lottie animationData=""></Lottie>
-                </div> */}
+
                 <div className="card-body w-full rounded-3xl ">
                     <div className="divider text-2xl font-bold">Login</div>
                     <form onSubmit={handleSubmit(onSubmit)}>

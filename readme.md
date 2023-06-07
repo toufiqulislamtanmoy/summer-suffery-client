@@ -16,7 +16,9 @@
 - [📝] 12⏳
 
 ## Completed Tasks
-
+### Main Tasks
 - [2✅] Navbar Component Done without conditional dashboard and user photo
 - [2✅] Footer Done  
+### Bonus Tasks
+- [7 ✅] Use From Hook Done
 
