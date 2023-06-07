@@ -1,17 +1,78 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Signup = () => {
+    const { userSignUp, updateUserInFo, userLogOut } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    // use from hook here
     const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+
+    // show and hide password state here
     const [showPassword, setShowPassword] = useState(false);
     const [showCnfPassword, setShowCnfPassword] = useState(false);
     const password = watch("password");
+
     const onSubmit = data => {
-        console.log(data)
+        // console.log(data)
+        const { name, email, photoUrl,password } = data;
+        console.log(name,email,password,photoUrl)
+        userSignUp(email,password) .then((logedUser) => {
+
+            const newlyCreatedUser = logedUser.user;
+            console.log(newlyCreatedUser);
+            updateUserInFo(name,photoUrl).then(() => {
+                const userDetails = {
+                    name,
+                    email,
+                    photoUrl,
+                    role:"user"
+                }
+
+                /********Insert user details in the database********/
+
+                fetch('http://localhost:5000/users', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userDetails)
+                }).then(res => res.json())
+                    .then(data => {
+                        reset();
+                        userLogOut();
+                        console.log(data)
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Account create successfully',
+                        })
+                        navigate("/login", { replace: true });
+                    });
+              
+              }).catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops... Did Not update user profile',
+                    text: `${error}`,
+                })
+              });
+
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${errorMessage} - ${errorCode}`,
+            })
+          });
     };
     return (
         <div className="hero min-h-screen ">
