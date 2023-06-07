@@ -1,14 +1,22 @@
 import {Link} from "react-router-dom"
+import {useContext} from "react"
 import logo from "../../assets/Logo/Logo.png"
+import { AuthContext } from "../../Provider/AuthProvider";
 const Navbar = () => {
+    const {user,userLogOut} = useContext(AuthContext);
+    // console.log(user)
+    const handelLogout = () =>{
+        userLogOut();
+        console.log('Inside Handel Logout')
+    }
     const navitem =
         <>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/">Instructors</Link></li>
             <li><Link to="/">Classes</Link></li>
-            <li><Link to="/">Dashboard</Link></li>
+            {user?.email &&<li><Link to="/">Dashboard</Link></li>}
         </>
-        const user = null;
+       
     return (
         <div className="navbar bg-black p-5 ">
             <div className="navbar-start">
@@ -34,13 +42,13 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {user ? <div className="flex items-center gap-5">
+                {user?.email ? <div className="flex items-center gap-5">
                     <div className="avatar">
                         <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                            <img src={user && "https://cdn-icons-png.flaticon.com/512/149/149071.png" } />
+                            <img title={user?.displayName} src={user?.photoURL } />
                         </div>
                     </div>
-                    <button>Logout</button>
+                    <button onClick={handelLogout}>Logout</button>
                 </div>
                     :
                     <Link to="/login">Login</Link>
