@@ -1,13 +1,47 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 const Login = () => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { userLogin } = useContext(AuthContext);
+    const location = useLocation();
+    const destination = location.state?.from?.pathname || "/"
+    const navigate = useNavigate();
+
+    // react from hook here
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    // show and hide password state here
     const [showPassword, setShowPassword] = useState(false);
+
+
     const onSubmit = data => {
         console.log(data)
+        userLogin(data?.email, data?.password).then((loggedInUser) => {
+            // Signed in 
+            const user = loggedInUser.user;
+            console.log(user);
+            navigate(destination, { replace: true })
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            // ...
+        })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log("Error Message: ", errorMessage, "Error Code: ", errorCode);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${errorMessage} -- ${errorCode}`,
+                })
+            });
     };
     return (
         <div className="hero min-h-screen ">
@@ -49,7 +83,7 @@ const Login = () => {
 
                         <p className="mt-3 space-x-2">Already Have an account? <Link className="text-blue-600 underline" to="/signup">Sign Up</Link></p>
 
-                        <SocialLogin/>
+                        <SocialLogin />
                     </form>
                 </div>
             </div>
