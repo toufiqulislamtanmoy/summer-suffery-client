@@ -2,10 +2,7 @@
 
 
 ## Main Requirements
-
-- [2] 404 page⏳
-- [3]  The user profile picture and Dashboard on the navbar are conditional. If the user is signed in, the navbar will show the profile picture; otherwise, it will show the Login button.⏳
-- [📝] 4 ⏳
+## Pending Tasks
 - [📝] 5 ⏳
 - [📝] 6 ⏳
 - [📝] 7 ⏳
@@ -17,8 +14,14 @@
 
 ## Completed Tasks
 ### Main Tasks
-- [2✅] Navbar Component Done without conditional dashboard and user photo
-- [2✅] Footer Done  
+- [1✅] Done
+- [2✅] Done  
+- [3✅] Done  
+- [4✅] Done  
 ### Bonus Tasks
+- [4 ✅] Make the home page responsive Done
 - [7 ✅] Use From Hook Done
+- [8 ✅] Use the Environment variable Done
+- [10 ✅] 404 Page Done
+
 
