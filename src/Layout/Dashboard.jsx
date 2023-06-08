@@ -1,12 +1,49 @@
-import { Link, Outlet } from "react-router-dom";
-
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 const Dashboard = () => {
-    const navItem = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/dashboard/selectedClasses">Selected Classes</Link></li>
-        <li><Link to="/dashboard/enrollClasses">Enroll Classes</Link></li>
-        <li><Link to="/dashboard/paymentHistory">Payment History</Link></li>
-    </>
+    const location = useLocation();
+    const userRole = "user";
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    useEffect(() => {
+        setIsAnimating(true);
+        const timeout = setTimeout(() => {
+            setIsAnimating(false);
+        }, 300); // Duration of your animation (in milliseconds)
+        
+        return () => clearTimeout(timeout);
+    }, [location.pathname]);
+    let navItems;
+    if (userRole === "admin") {
+        navItems = (
+            <>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/dashboard/admin">Admin Panel</Link></li>
+                <li><Link to="/dashboard/users">Users</Link></li>
+                <li><Link to="/dashboard/settings">Settings</Link></li>
+            </>
+        );
+    } else if (userRole === "instructor") {
+        navItems = (
+            <>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/dashboard/courses">Courses</Link></li>
+                <li><Link to="/dashboard/students">Students</Link></li>
+                <li><Link to="/dashboard/grades">Grades</Link></li>
+            </>
+        );
+    } else if (userRole === "user") {
+        navItems = (
+            <>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/dashboard/selectedClasses">Selected Classes</Link></li>
+                <li><Link to="/dashboard/enrollClasses">Enroll Classes</Link></li>
+                <li><Link to="/dashboard/paymentHistory">Payment History</Link></li>
+            </>
+        );
+    }
+
     return (
         <div className="drawer">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -23,20 +60,33 @@ const Dashboard = () => {
                         <ul className="menu menu-horizontal">
                             {/* Navbar menu content here */}
                             {
-                                navItem
+                                navItems
                             }
                         </ul>
                     </div>
                 </div>
                 {/* Page content here */}
-                <Outlet />
+                <AnimatePresence>
+                    <motion.div
+                        className="page-content"
+                        key={location.pathname}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.3 }}
+                        onAnimationComplete={() => setIsAnimating(false)}
+                        style={{ visibility: isAnimating ? "hidden" : "visible" }}
+                    >
+                        <Outlet />
+                    </motion.div>
+                </AnimatePresence>
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200">
                     {/* Sidebar content here */}
                     {
-                        navItem
+                        navItems
                     }
 
                 </ul>
