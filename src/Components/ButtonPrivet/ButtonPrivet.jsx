@@ -1,31 +1,48 @@
-import { useContext ,useState,useEffect} from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import {useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
-const ButtonPrivet = ({ userRole, seats }) => {
+const ButtonPrivet = ({ approvedClasses }) => {
   const { user } = useContext(AuthContext);
   const [btnDisable, setBtnDisable] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const [userRole, setUserRole] = useState("")
+  const { name, image, price, instructor, _id } = approvedClasses;
 
+  // find the user role here
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user?.email}`).then(res => res.json()).then(data => setUserRole(data.role))
+  }, [user])
+  console.log(approvedClasses)
   const handleButtonClick = () => {
     if (!user) {
       // Redirect to login page if user is not logged in
       navigate("/login", { state: { from: location }, replace: true });
     } else {
-      console.log("Class is selected");
+      if (user && user?.email) {
+        const selectedClass = {
+          classId: _id,
+          className: name,
+          banner: image,
+          price,
+          instructor,
+          email:user?.email
+        }
+        console.log(selectedClass);
+      }
     }
   };
 
   // Check if userRole is "admin" or "instructor" and seats is 0
   useEffect(() => {
-    if (userRole === "admin" || userRole === "instructor" || seats === 0) {
+    if (userRole === "admin" || userRole === "instructor" || approvedClasses.seats === 0) {
       setBtnDisable(true);
     } else {
       setBtnDisable(false);
     }
-  }, [userRole, seats]);
+  }, [userRole, approvedClasses.seats]);
 
   return (
     <button
