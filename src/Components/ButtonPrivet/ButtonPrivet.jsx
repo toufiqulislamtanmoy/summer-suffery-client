@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const ButtonPrivet = ({ approvedClasses }) => {
@@ -31,6 +32,21 @@ const ButtonPrivet = ({ approvedClasses }) => {
           email:user?.email
         }
         console.log(selectedClass);
+        fetch('http://localhost:5000/selectedClass',{
+                method:"POST",
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(selectedClass)
+            }).then(res => res.json()).then(data => {
+                if(data.insertedId){
+                    Swal.fire({
+                        icon: 'success',
+                        title: `Successfully selected ${name} course`,
+                        showConfirmButton: true,
+                      })
+                }
+            })
       }
     }
   };
