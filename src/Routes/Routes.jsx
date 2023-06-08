@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
 import NotFound from "../Pages/NotFound/NotFound";
 import Instractors from "../Pages/Instractors/Instractors"
+import Classes from "../Pages/Classes/Classes";
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path:"/instractor",
                 element:<Instractors />
+            },
+            {
+                path:"/classes",
+                element:<Classes />
             },
         ]
     },
