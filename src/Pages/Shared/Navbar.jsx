@@ -2,9 +2,10 @@ import {Link} from "react-router-dom"
 import {useContext} from "react"
 import logo from "../../assets/Logo/Logo.png"
 import { AuthContext } from "../../Provider/AuthProvider";
+
+
 const Navbar = () => {
     const {user,userLogOut} = useContext(AuthContext);
-    // console.log(user)
     const handelLogout = () =>{
         userLogOut();
         console.log('Inside Handel Logout')
@@ -13,8 +14,9 @@ const Navbar = () => {
         <>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/instractor">Instructors</Link></li>
-            <li><Link to="/classes">Classes</Link></li>
-            {user?.email &&<li><Link to="/">Dashboard</Link></li>}
+            <li><Link to="/
+            ">Classes</Link></li>
+            {user?.email &&<li><Link to="/dashboard/selectedClasses">Dashboard</Link></li>}
         </>
        
     return (

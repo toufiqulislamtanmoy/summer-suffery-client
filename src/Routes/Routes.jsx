@@ -8,8 +8,11 @@ import Signup from "../Pages/Signup/Signup";
 import NotFound from "../Pages/NotFound/NotFound";
 import Instractors from "../Pages/Instractors/Instractors"
 import Classes from "../Pages/Classes/Classes";
-
-
+import Dashboard from "../Layout/Dashboard";
+import PrivetRoute from "../Routes/PrivetRoute"
+import SelectedClasses from "../Pages/Dashboard/SelectedClasses/SelectedClasses";
+import EnrollClasses from "../Pages/Dashboard/EnrollClaswses/EnrollClasses";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -38,5 +41,24 @@ const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path:"/dashboard",
+        element:<PrivetRoute><Dashboard/></PrivetRoute>,
+        children:[
+          {
+            path:"selectedClasses",
+            element:<SelectedClasses/>
+          },
+          {
+            path:"enrollClasses",
+            element:<EnrollClasses/>
+          },
+          {
+            path:"paymentHistory",
+            element:<PaymentHistory/>
+          },
+         
+        ]
+      }
 ]);
 export default router;
