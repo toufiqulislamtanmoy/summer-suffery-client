@@ -5,7 +5,7 @@ const SelectedClasses = () => {
     return (
         <div className=" h-[100vh] flex items-center justify-center ">
             <div className="overflow-x-auto w-[1380px]">
-                <table className="table">
+               {selectedClasses.length >0 ? <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
@@ -28,6 +28,9 @@ const SelectedClasses = () => {
                     
 
                 </table>
+            :
+            <div className="text-center">Did not added any course</div>    
+            }
             </div>
         </div>
     );

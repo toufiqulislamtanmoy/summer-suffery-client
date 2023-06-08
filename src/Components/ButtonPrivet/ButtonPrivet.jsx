@@ -13,6 +13,7 @@ const ButtonPrivet = ({ approvedClasses }) => {
   const { name, image, price, instructor, _id,seats } = approvedClasses;
 
   // find the user role here
+  // to do make this api call with hooks
   useEffect(() => {
     fetch(`http://localhost:5000/users/${user?.email}`).then(res => res.json()).then(data => setUserRole(data.role))
   }, [user])

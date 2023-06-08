@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 const Dashboard = () => {
     const location = useLocation();
-    const userRole = "user";
+    const userRole = "admin";
     const [isAnimating, setIsAnimating] = useState(false);
 
     useEffect(() => {
@@ -19,9 +19,8 @@ const Dashboard = () => {
         navItems = (
             <>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/dashboard/admin">Admin Panel</Link></li>
-                <li><Link to="/dashboard/users">Users</Link></li>
-                <li><Link to="/dashboard/settings">Settings</Link></li>
+                <li><Link to="/dashboard/manageClasses">Manage Classes</Link></li>
+                <li><Link to="/dashboard/allusers">Manage Users</Link></li>
             </>
         );
     } else if (userRole === "instructor") {

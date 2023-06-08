@@ -13,6 +13,8 @@ import PrivetRoute from "../Routes/PrivetRoute"
 import SelectedClasses from "../Pages/Dashboard/SelectedClasses/SelectedClasses";
 import EnrollClasses from "../Pages/Dashboard/EnrollClaswses/EnrollClasses";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import ManageClass from "../Pages/Dashboard/ManageClasses/ManageClass";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
           {
             path:"paymentHistory",
             element:<PaymentHistory/>
+          },
+          {
+            path:"allusers",
+            element:<AllUsers/>
+          },
+          {
+            path:"manageClasses",
+            element:<ManageClass/>
           },
          
         ]
