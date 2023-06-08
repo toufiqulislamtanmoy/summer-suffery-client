@@ -10,7 +10,7 @@ const ButtonPrivet = ({ approvedClasses }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [userRole, setUserRole] = useState("")
-  const { name, image, price, instructor, _id } = approvedClasses;
+  const { name, image, price, instructor, _id,seats } = approvedClasses;
 
   // find the user role here
   useEffect(() => {
@@ -29,7 +29,8 @@ const ButtonPrivet = ({ approvedClasses }) => {
           banner: image,
           price,
           instructor,
-          email:user?.email
+          email:user?.email,
+          seats
         }
         console.log(selectedClass);
         fetch('http://localhost:5000/selectedClass',{

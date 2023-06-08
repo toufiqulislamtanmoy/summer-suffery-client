@@ -5,7 +5,7 @@ const ClassesCard = ({ approvedClasses }) => {
     
     const { price, seats, instructor, name, image } = approvedClasses;
     return (
-        <div className={`card w-96 ${seats === 0 ? 'bg-red-500 text-white' : 'bg-base-100'} shadow-xl`}>
+        <div className={`card w-full ${seats === 0 ? 'bg-red-500 text-white' : 'bg-base-100'} shadow-xl`}>
             <figure><img src={image} alt="not found" /></figure>
             <div className="card-body">
                 <h2 className="card-title">
