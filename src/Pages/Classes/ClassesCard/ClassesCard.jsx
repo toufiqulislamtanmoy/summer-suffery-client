@@ -1,12 +1,13 @@
 import ButtonPrivet from "../../../Components/ButtonPrivet/ButtonPrivet";
+import useEnrollClasses from "../../../hooks/useEnrollClasses";
 import useSelectedClass from "../../../hooks/useSelectedClass";
 
 const ClassesCard = ({ approvedClasses }) => {
     const { price, seats, instructor, name, image, _id } = approvedClasses;
     const [selectedClasses, refetch] = useSelectedClass();
-    const isAlreadySelected = selectedClasses.map(
-        (classObj) => classObj.classId === _id
-    ).includes(true);
+    const [enrolClasses] = useEnrollClasses();
+    const isAlreadySelected = selectedClasses.map(classObj => classObj.classId === _id).includes(true) || (enrolClasses && enrolClasses.map(classObj => classObj.classId === _id).includes(true));
+
 
 
     return (

@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 const useEnrollClasses = () => {
     const {user,loading} = useContext(AuthContext);
     const [axiosSecure] = useAxiosSecure();
-    const {data: enrollClass} = useQuery({
+    const {data: enrollClass,refetch} = useQuery({
         queryKey:['enrollClass',user?.email],
         enabled: !loading,
         queryFn: async () => {
@@ -16,7 +16,7 @@ const useEnrollClasses = () => {
             return response.data;      
         }
        })
-       return [enrollClass];
+       return [enrollClass,refetch];
 };
 
 export default useEnrollClasses;
