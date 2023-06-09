@@ -1,9 +1,14 @@
 import ButtonPrivet from "../../../Components/ButtonPrivet/ButtonPrivet";
+import useSelectedClass from "../../../hooks/useSelectedClass";
 
 const ClassesCard = ({ approvedClasses }) => {
+    const { price, seats, instructor, name, image, _id } = approvedClasses;
+    const [selectedClasses, refetch] = useSelectedClass();
+    const isAlreadySelected = selectedClasses.map(
+        (classObj) => classObj.classId === _id
+    ).includes(true);
 
-    
-    const { price, seats, instructor, name, image } = approvedClasses;
+
     return (
         <div className={`card w-full ${seats === 0 ? 'bg-red-500 text-white' : 'bg-base-100'} shadow-xl`}>
             <figure><img src={image} alt="not found" /></figure>
@@ -17,9 +22,13 @@ const ClassesCard = ({ approvedClasses }) => {
                 <p><span>Instructor :</span>{instructor}</p>
                 <p><span>Remaining seats :</span>{seats}</p>
                 <p><span>Price :</span>{price} TK</p>
-                <div className="card-actions justify-end">
-                    <ButtonPrivet approvedClasses={approvedClasses}/>
-                </div>
+                {isAlreadySelected ? (
+                    <p className="text-green-500">You have already selected this class.</p>
+                ) : (
+                    <div className="card-actions justify-end">
+                        <ButtonPrivet approvedClasses={approvedClasses} refetch={refetch} />
+                    </div>
+                )}
             </div>
         </div>
     );

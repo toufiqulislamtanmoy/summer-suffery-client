@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
-const ButtonPrivet = ({ approvedClasses }) => {
+const ButtonPrivet = ({ approvedClasses,refetch }) => {
   const { user } = useContext(AuthContext);
   const [btnDisable, setBtnDisable] = useState(false);
   const location = useLocation();
@@ -17,7 +17,7 @@ const ButtonPrivet = ({ approvedClasses }) => {
   useEffect(() => {
     fetch(`http://localhost:5000/users/${user?.email}`).then(res => res.json()).then(data => setUserRole(data.role))
   }, [user])
-  console.log(approvedClasses)
+  // console.log(approvedClasses)
   const handleButtonClick = () => {
     if (!user) {
       // Redirect to login page if user is not logged in
@@ -47,6 +47,7 @@ const ButtonPrivet = ({ approvedClasses }) => {
                         title: `Successfully selected ${name} course`,
                         showConfirmButton: true,
                       })
+                      refetch();
                 }
             })
       }
