@@ -1,12 +1,13 @@
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useEnrollClasses from "../../../hooks/useEnrollClasses";
 import moment from 'moment';
 
 const EnrollClasses = () => {
     const [enrollClass] = useEnrollClasses();
-    
-    return (
-        <div className="text-white my-10">
 
+    return (
+        <div className=" my-10">
+            <SectionTitle title="Enrol Classes" />
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 lg:px-10 px-5">
                 {enrollClass &&
                     enrollClass.map((enclass) => (
@@ -17,9 +18,9 @@ const EnrollClasses = () => {
                             <div className="card-body">
                                 <h2 className="card-title">{enclass.className}</h2>
                                 <h2 className="card-title"><span>Instructor:</span> {enclass.instructorName}</h2>
-                                <p><span>Enroll Date:</span> {moment(enclass.date).format('YYYY-MM-DD')}</p> 
+                                <p><span>Enroll Date:</span> {moment(enclass.date).format('YYYY-MM-DD')}</p>
                                 <p><span>Amount:</span> {enclass.price} TK</p>
-                                
+
                             </div>
                         </div>
                     ))

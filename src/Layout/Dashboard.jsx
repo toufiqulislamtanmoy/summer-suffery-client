@@ -1,47 +1,48 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import { FaArrowCircleLeft, FaMoon, FaSun } from "react-icons/fa"
+import useThemeToggle from "../hooks/useThemeToggle";
 const Dashboard = () => {
     const location = useLocation();
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
     const [isAnimating, setIsAnimating] = useState(false);
-
+    const { theme, toggleTheme } = useThemeToggle();
     useEffect(() => {
         setIsAnimating(true);
         const timeout = setTimeout(() => {
             setIsAnimating(false);
         }, 300); // Duration of your animation (in milliseconds)
-        
+
         return () => clearTimeout(timeout);
     }, [location.pathname]);
     let navItems;
     if (isAdmin) {
         navItems = (
             <>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/dashboard/manageClasses">Manage Classes</Link></li>
-                <li><Link to="/dashboard/allusers">Manage Users</Link></li>
+
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/manageClasses">Manage Classes</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/allusers">Manage Users</NavLink></li>
             </>
         );
     } else if (isInstructor) {
         navItems = (
             <>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/dashboard/courses">Courses</Link></li>
-                <li><Link to="/dashboard/students">Students</Link></li>
-                <li><Link to="/dashboard/grades">Grades</Link></li>
+
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/courses">Courses</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/students">Students</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/grades">Grades</NavLink></li>
             </>
         );
-    } else{
+    } else {
         navItems = (
             <>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/dashboard/selectedClasses">Selected Classes</Link></li>
-                <li><Link to="/dashboard/enrollClasses">Enroll Classes</Link></li>
-                <li><Link to="/dashboard/paymentHistory">Payment History</Link></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/selectedClasses">Selected Classes</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/enrollClasses">Enroll Classes</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/paymentHistory">Payment History</NavLink></li>
             </>
         );
     }
@@ -57,7 +58,12 @@ const Dashboard = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         </label>
                     </div>
-                    <div className="flex-1 px-2 mx-2">Navbar Title</div>
+                    <div className="flex-1 justify-end lg:justify-start px-2 mx-2 text-2xl ">
+                        <Link className="hover:text-info" to="/"><FaArrowCircleLeft /></Link>
+                    </div>
+                    <div>
+                        <button title={theme === 'dark' ? 'Light' : 'Dark'} onClick={toggleTheme}>{theme === 'dark' ? <FaSun className="text-yellow-300 text-xl" /> : <FaMoon />}</button>
+                    </div>
                     <div className="flex-none hidden lg:block">
                         <ul className="menu menu-horizontal">
                             {/* Navbar menu content here */}

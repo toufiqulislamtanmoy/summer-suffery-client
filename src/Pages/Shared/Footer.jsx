@@ -7,7 +7,7 @@ import {
 } from 'react-icons/fa';
 const Footer = () => {
     return (
-        <div className=" bg-black p-10">
+        <div className=" bg-base-300 p-10">
             <footer className="footer  text-base-content">
                 <div className="space-y-5 text-center">
                     <Link to="/"><img src={logo} alt="" /></Link>

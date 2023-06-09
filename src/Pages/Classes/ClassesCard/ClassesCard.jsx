@@ -12,7 +12,7 @@ const ClassesCard = ({ approvedClasses }) => {
 
     return (
         <div className={`card w-full ${seats === 0 ? 'bg-red-500 text-white' : 'bg-base-100'} shadow-xl`}>
-            <figure><img src={image} alt="not found" /></figure>
+            <figure><img className="rounded-xl p-3 lg:h-[220px]" src={image} alt="not found" /></figure>
             <div className="card-body">
                 <h2 className="card-title">
                     {name}

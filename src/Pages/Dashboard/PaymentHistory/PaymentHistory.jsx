@@ -1,3 +1,4 @@
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import usePaymentHistory from "../../../hooks/usePaymentHistory";
 
 
@@ -5,6 +6,7 @@ const PaymentHistory = () => {
     const [paymentHistory] = usePaymentHistory();
     return (
         <div className="my-20">
+            <SectionTitle title="Your Payment History"/>
             <div className="overflow-x-auto">
                 <table className="table table-zebra max-w-7xl mx-auto">
                     {/* head */}

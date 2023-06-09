@@ -1,11 +1,13 @@
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useSelectedClass from "../../../hooks/useSelectedClass"
 import SelectedClassDetails from "./SelectedClassDetails/SelectedClassDetails";
 const SelectedClasses = () => {
     const [selectedClasses,refetch] = useSelectedClass();
     return (
-        <div className=" h-[100vh] flex items-center justify-center ">
-            <div className="overflow-x-auto w-[1380px]">
-               {selectedClasses.length >0 ? <table className="table">
+        <div className="my-20">
+            <SectionTitle title="Selected Classes"/>
+            <div className="overflow-x-auto">
+               {selectedClasses.length >0 ? <table className="table max-w-7xl mx-auto">
                     {/* head */}
                     <thead>
                         <tr>
@@ -31,7 +33,7 @@ const SelectedClasses = () => {
 
                 </table>
             :
-            <div className="text-center">Did not added any course</div>    
+            <div className="text-center">Did not added any classes</div>    
             }
             </div>
         </div>
