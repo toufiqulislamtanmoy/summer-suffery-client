@@ -15,6 +15,8 @@ const SelectedClasses = () => {
                             <th>Course Fee</th>
                             <th>Remaining seats</th>
                             <th>Action</th>
+                            <th>Payment
+                            </th>
                             
                         </tr>
                     </thead>

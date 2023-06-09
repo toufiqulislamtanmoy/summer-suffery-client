@@ -1,6 +1,7 @@
-import { FaTrash } from "react-icons/fa"
+import { FaTrash, FaWallet } from "react-icons/fa"
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-const SelectedClassDetails = ({ courseDetails,refetch }) => {
+const SelectedClassDetails = ({ courseDetails, refetch }) => {
     console.log(courseDetails);
     const { _id, banner, seats, className, instructor, price } = courseDetails;
     const handelDelete = id => {
@@ -53,6 +54,13 @@ const SelectedClassDetails = ({ courseDetails,refetch }) => {
             </th>
             <th>
                 <button onClick={() => handelDelete(_id)} className="btn btn-ghost btn-xs"><FaTrash className="text-red-500 text-xl" /></button>
+            </th>
+            <th>
+                {/* <Link to={`/dashboard/payment/${_id}`} className="btn btn-ghost btn-xs"><FaWallet className="text-green-500 text-xl" />Pay Now</Link> */}
+                <Link to={{ pathname: '/dashboard/payment', search: `?id=${_id}` }} className="btn btn-ghost btn-xs">
+                    <FaWallet className="text-green-500 text-xl" />Pay Now
+                </Link>
+
             </th>
         </tr>
     );
