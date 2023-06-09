@@ -1,14 +1,14 @@
 
 
-import useAllUser from "../../hooks/useAllUser";
+import useIAllInstructor from "../../hooks/useIAllInstructor";
 import InstractorRow from "./InstractorsRow/InstractorRow";
 
 const Instractors = () => {
 
-    const [users] = useAllUser();
+    const [instructors] = useIAllInstructor();
     // console.log(users);
-    const instractors = users.filter(instractor => instractor.role ==="instructor");
-    console.log(instractors);
+    // const instractors = users.filter(instractor => instractor.role ==="instructor");
+    // console.log(instractors);
     return (
         <div className="overflow-x-auto">
             <table className="table text-center max-w-7xl mx-auto px-5 lg:px-0">
@@ -22,7 +22,7 @@ const Instractors = () => {
                 </thead>
                 <tbody>
                     {
-                        instractors.map(instractor => <InstractorRow key={instractor._id} instractor={instractor}/>)
+                        instructors.map(instractor => <InstractorRow key={instractor._id} instractor={instractor}/>)
                     }
                 </tbody>
             </table>

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useContext } from "react";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = ({ price, classDetail }) => {
     const stripe = useStripe();
@@ -12,9 +14,9 @@ const CheckOutForm = ({ price, classDetail }) => {
     const { user } = useContext(AuthContext);
     const [processing, setProcessing] = useState(false);
     const [clintSecret, setClintSecret] = useState('');
-    const [transactionId, setTransactionId] = useState('');
     console.log(classDetail)
     const { instructor, className, banner, classId, _id } = classDetail;
+    const navigate = useNavigate();
 
 
 
@@ -50,7 +52,6 @@ const CheckOutForm = ({ price, classDetail }) => {
         if (error) {
             console.log('[error]', error);
             setErrorMsg(error.message);
-            setTransactionId('');
         } else {
             setErrorMsg('');
             console.log('[PaymentMethod]', paymentMethod);
@@ -75,11 +76,8 @@ const CheckOutForm = ({ price, classDetail }) => {
         }
 
         setProcessing(false);
-        
-        if (paymentIntent?.status === "succeeded") {
-            
-            setTransactionId(paymentIntent.id);
 
+        if (paymentIntent?.status === "succeeded") {
             const paymentInfo = {
                 email: user?.email,
                 transactionId: paymentIntent.id,
@@ -92,9 +90,20 @@ const CheckOutForm = ({ price, classDetail }) => {
                 selectedClassID: _id
 
             }
-            console.log(paymentInfo)
-        }else{
-            setErrorMsg('An error occur try after some times leater or refresh the page')
+            axiosSecure.post("/payments", paymentInfo).then(res => {
+                console.log(res.data)
+                if (res.data.insertResult.insertedId && res.data.deleteResult.deletedCount > 0 && res.data.updateResult.modifiedCount > 0) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Transaction Successful',
+                        showConfirmButton: true,
+                      })
+                      navigate('/dashboard/enrollClasses');
+                }
+            })
+        } else {
+            setErrorMsg('An error occur try after some times leater or refresh the page');
+            
         }
 
 
@@ -123,8 +132,7 @@ const CheckOutForm = ({ price, classDetail }) => {
                 </button>
             </form>
             {errorMsg && <p className='text-red-500 w-2/3 mx-auto'>{errorMsg}</p>}
-            {transactionId && <p className='text-green-500 w-2/3 mx-auto'>Transaction Successful: {transactionId}</p>}
-            
+
         </div>
     );
 };
