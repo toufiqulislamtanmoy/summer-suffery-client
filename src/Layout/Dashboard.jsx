@@ -1,9 +1,13 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 const Dashboard = () => {
     const location = useLocation();
-    const userRole = "admin";
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
+    const userRole = "user";
     const [isAnimating, setIsAnimating] = useState(false);
 
     useEffect(() => {
@@ -15,7 +19,7 @@ const Dashboard = () => {
         return () => clearTimeout(timeout);
     }, [location.pathname]);
     let navItems;
-    if (userRole === "admin") {
+    if (isAdmin) {
         navItems = (
             <>
                 <li><Link to="/">Home</Link></li>
@@ -23,7 +27,7 @@ const Dashboard = () => {
                 <li><Link to="/dashboard/allusers">Manage Users</Link></li>
             </>
         );
-    } else if (userRole === "instructor") {
+    } else if (isInstructor) {
         navItems = (
             <>
                 <li><Link to="/">Home</Link></li>
@@ -32,7 +36,7 @@ const Dashboard = () => {
                 <li><Link to="/dashboard/grades">Grades</Link></li>
             </>
         );
-    } else if (userRole === "user") {
+    } else{
         navItems = (
             <>
                 <li><Link to="/">Home</Link></li>
