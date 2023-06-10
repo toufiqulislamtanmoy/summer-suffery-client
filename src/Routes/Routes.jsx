@@ -17,6 +17,9 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import ManageClass from "../Pages/Dashboard/ManageClasses/ManageClass";
 import AdminRoute from "./AdminRoute";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import InstructorRoute from "./InstructorRoute";
+import AddClass from "../Pages/Dashboard/Instactor/AddClass";
+import MyClass from "../Pages/Dashboard/Instactor/MyClass/MyClass";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -64,7 +67,7 @@ const router = createBrowserRouter([
           {
             path:"payment",
             element:<Payment/>,
-            // loader:({params}) => fetch(`http://localhost:5000/selectedClass/${params.id}`)
+            
             
           },
           {
@@ -74,6 +77,14 @@ const router = createBrowserRouter([
           {
             path:"manageClasses",
             element:<AdminRoute><ManageClass/></AdminRoute>
+          },
+          {
+            path:"addClass",
+            element:<InstructorRoute><AddClass/></InstructorRoute>
+          },
+          {
+            path:"myClass",
+            element:<InstructorRoute><MyClass/></InstructorRoute>
           },
          
         ]

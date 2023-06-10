@@ -32,9 +32,8 @@ const Dashboard = () => {
         navItems = (
             <>
 
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/courses">Courses</NavLink></li>
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/students">Students</NavLink></li>
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/grades">Grades</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/addClass">Add Class</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/myClass">My Class</NavLink></li>
             </>
         );
     } else {
