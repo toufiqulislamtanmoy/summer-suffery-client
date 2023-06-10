@@ -4,7 +4,6 @@
 ## Main Requirements
 ## Pending Tasks
 - [📝] 5 (Popular Instructors Section,Popular Classes Section ) ⏳
-- [📝] 10⏳
 - [📝] 11  (Manage Classes)⏳
 
 ## Completed Tasks
@@ -18,6 +17,7 @@
 - [7✅] Done
 - [8✅] Done
 - [9✅] Done
+- [10✅] Done
 - [11✅] Manage Users
 - [12✅] Done
 ### Bonus Tasks

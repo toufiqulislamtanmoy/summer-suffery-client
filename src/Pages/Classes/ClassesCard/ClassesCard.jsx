@@ -1,8 +1,10 @@
 import ButtonPrivet from "../../../Components/ButtonPrivet/ButtonPrivet";
 import useEnrollClasses from "../../../hooks/useEnrollClasses";
 import useSelectedClass from "../../../hooks/useSelectedClass";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 const ClassesCard = ({ approvedClasses }) => {
+    AOS.init();
     const { price, seats, instructor, name, image, _id } = approvedClasses;
     const [selectedClasses, refetch] = useSelectedClass();
     const [enrolClasses] = useEnrollClasses();
@@ -11,9 +13,9 @@ const ClassesCard = ({ approvedClasses }) => {
 
 
     return (
-        <div className={`card w-full ${seats === 0 ? 'bg-red-500 text-white' : 'bg-base-100'} shadow-xl`}>
-            <figure><img className="rounded-xl p-3 lg:h-[220px]" src={image} alt="not found" /></figure>
-            <div className="card-body">
+        <div className={`card w-full ${seats === 0 ? 'bg-red-500 text-white' : 'bg-base-100'} shadow-xl`} data-aos="flip-left" >
+            <figure data-aos="fade-up-right"><img className="rounded-xl p-3 lg:h-[220px]" src={image} alt="not found" /></figure>
+            <div className="card-body" data-aos="fade-up-left">
                 <h2 className="card-title">
                     {name}
                     <div className="badge badge-secondary">{

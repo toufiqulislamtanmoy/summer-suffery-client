@@ -5,7 +5,6 @@ import { FaStarHalf, FaStar } from "react-icons/fa"
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 const UserFeedBack = () => {
     const [feedbacks] = useFeedBack();
-    console.log(feedbacks)
 
     return (
         <div>

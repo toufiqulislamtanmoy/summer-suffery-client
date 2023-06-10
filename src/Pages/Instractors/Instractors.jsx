@@ -1,5 +1,6 @@
 
 
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import useIAllInstructor from "../../hooks/useIAllInstructor";
 import InstractorRow from "./InstractorsRow/InstractorRow";
 
@@ -10,22 +11,25 @@ const Instractors = () => {
     // const instractors = users.filter(instractor => instractor.role ==="instructor");
     // console.log(instractors);
     return (
-        <div className="overflow-x-auto">
-            <table className="table text-center max-w-7xl mx-auto px-5 lg:px-0">
-                {/* head */}
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        instructors.map(instractor => <InstractorRow key={instractor._id} instractor={instractor}/>)
-                    }
-                </tbody>
-            </table>
+        <div className="my-20">
+            <SectionTitle title="All Approved Instructor"/>
+            <div className="overflow-x-auto">
+                <table className="table text-center max-w-7xl mx-auto px-5 lg:px-0">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            instructors.map(instractor => <InstractorRow key={instractor._id} instractor={instractor} />)
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

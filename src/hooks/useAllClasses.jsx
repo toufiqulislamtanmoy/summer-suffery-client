@@ -8,7 +8,6 @@ const useAllClasses = () => {
             return res.json();
         }
     })
-    console.log(classes)
     return [classes, loading,refetch];
 };
 

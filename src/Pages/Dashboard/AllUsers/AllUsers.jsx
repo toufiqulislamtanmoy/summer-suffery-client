@@ -40,10 +40,10 @@ const AllUsers = () => {
     }
 
     return (
-        <div className=" h-[100vh] flex items-center justify-center ">
-            <div className="overflow-x-auto w-[1380px]">
+        <div className="my-20">
+            <div className="overflow-x-auto">
                 {users.length > 0 ? 
-                <table className="table text-center bg-gray-800 shadow-lg">
+                <table className="table max-w-7xl mx-auto text-center bg-base-300 shadow-lg">
                     {/* head */}
                     <thead>
                         <tr >
@@ -71,7 +71,7 @@ const AllUsers = () => {
                                         </td>
                                         <td>{single.name}</td>
                                         <td>{single.role}</td>
-                                        <td>{single.email}Tk</td>
+                                        <td>{single.email}</td>
 
                                         <th>
                                             <button onClick={() => handelMakeAdmin(single)} disabled={single.role === 'admin'} className="btn btn-ghost btn-xs">Make Admin</button>
