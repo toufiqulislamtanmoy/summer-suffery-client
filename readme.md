@@ -1,6 +1,6 @@
 # Summer Suffery
 
-![Summer Suffery Logo](logo.png)
+![Summer Suffery Logo](./src/assets/Logo/Logo.png)
 
 ## Description
 

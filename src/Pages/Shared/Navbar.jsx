@@ -17,7 +17,7 @@ const Navbar = () => {
         })
     }, [user?.email])
 
-    console.log(role);
+    // console.log(role);
     const handelLogout = () => {
         userLogOut();
         console.log('Inside Handel Logout')
@@ -27,6 +27,7 @@ const Navbar = () => {
             <li><Link to="/">Home <FaHome/></Link></li>
             <li><Link to="/instractor">Instructors <FaChalkboardTeacher/></Link></li>
             <li><Link to="/classes">Classes <FaReadme/></Link></li>
+            {/* {user?.email &&<li><Link to="/dashboard/selectedClasses">Dashboard <FaAddressCard/></Link></li>} */}
             {user?.email && <li>
                 <Link to={role === 'admin' ? '/dashboard/manageClasses' : role === 'instructor' ? '/dashboard/myClass' : '/dashboard/selectedClasses'}>
                     Dashboard <FaAddressCard/>
