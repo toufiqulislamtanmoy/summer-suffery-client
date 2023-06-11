@@ -30,4 +30,4 @@ The Summer Suffery website is developed using the following technologies and pac
 
 ## Live Site
 
-Check out the live version of Summer Suffery at [www.summersuffery.com](https://www.summersuffery.com)
+Check out the live version of Summer Suffery at https://summer-suffery.web.app/
