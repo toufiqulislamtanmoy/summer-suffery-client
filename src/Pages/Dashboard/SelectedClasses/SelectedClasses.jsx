@@ -33,7 +33,7 @@ const SelectedClasses = () => {
 
                 </table>
             :
-            <div className="text-center">Did not added any classes</div>    
+            <div className="text-center">Did not select any classes</div>    
             }
             </div>
         </div>

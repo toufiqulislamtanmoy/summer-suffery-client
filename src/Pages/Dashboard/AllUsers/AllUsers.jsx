@@ -1,15 +1,15 @@
 import Swal from "sweetalert2";
 import useAllUser from "../../../hooks/useAllUser";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const AllUsers = () => {
     const [users, refetch] = useAllUser();
-    console.log(users);
+    const [axiosSecure] = useAxiosSecure();
 
     const handelMakeAdmin = user => {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
-            method: "PATCH",
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-            if (data.modifiedCount) {
+        
+        axiosSecure.patch(`/users/admin/${user._id}`).then(res => {
+
+            if (res.data.modifiedCount > 0) {
                 refetch();
                 Swal.fire({
                     icon: 'success',
@@ -23,15 +23,13 @@ const AllUsers = () => {
 
     const handelMakeInstructor = user => {
 
-        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
-            method: "PATCH",
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-            if (data.modifiedCount) {
+        axiosSecure.patch(`/users/instructor/${user._id}`).then(res => {
+
+            if (res.data.modifiedCount > 0) {
                 refetch();
                 Swal.fire({
                     icon: 'success',
-                    title: `${user.name} is instructor now`,
+                    title: `${user.name} is Instructor now`,
                     showConfirmButton: true,
 
                 })

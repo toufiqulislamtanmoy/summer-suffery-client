@@ -1,24 +1,46 @@
 import { Link } from "react-router-dom"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import logo from "../../assets/Logo/Logo.png"
 import { AuthContext } from "../../Provider/AuthProvider";
 import useThemeToggle from "../../hooks/useThemeToggle"
-import { FaMoon,FaSun} from "react-icons/fa"
+import { FaMoon, FaSun,FaChalkboard,FaHome,FaChalkboardTeacher, FaAddressCard, FaReadme } from "react-icons/fa"
 
 const Navbar = () => {
     const { user, userLogOut } = useContext(AuthContext);
     const { theme, toggleTheme } = useThemeToggle();
-    console.log(theme);
+    const [role, setRole] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/role/${user?.email}`).then(res => res.json()).then(data => {
+            console.log(data)
+            setRole(data.role);
+        })
+    }, [user?.email])
+
+    console.log(role);
     const handelLogout = () => {
         userLogOut();
         console.log('Inside Handel Logout')
     }
     const navitem =
         <>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/instractor">Instructors</Link></li>
-            <li><Link to="/classes">Classes</Link></li>
-            {user?.email && <li><Link to="/dashboard/selectedClasses">Dashboard</Link></li>}
+            <li><Link to="/">Home <FaHome/></Link></li>
+            <li><Link to="/instractor">Instructors <FaChalkboardTeacher/></Link></li>
+            <li><Link to="/classes">Classes <FaReadme/></Link></li>
+            {user?.email && <li>
+                <Link to={role === 'admin' ? '/dashboard/manageClasses' : role === 'instructor' ? '/dashboard/myClass' : '/dashboard/selectedClasses'}>
+                    Dashboard <FaAddressCard/>
+                </Link>
+            </li>}
+
+            {/* {
+                (user?.email && role === 'admin')&& 
+                <li>
+                <Link to="/dashboard/manageClasses">
+                    Dashboard
+                </Link>
+                </li>
+            } */}
         </>
 
     return (
@@ -58,7 +80,7 @@ const Navbar = () => {
                     <Link to="/login">Login</Link>
                 }
                 <div>
-                    <button title={theme === 'dark'? 'Light':'Dark'} onClick={toggleTheme}>{theme === 'dark'?  <FaSun className="text-yellow-300 text-xl"/>: <FaMoon/>}</button>    
+                    <button title={theme === 'dark' ? 'Light' : 'Dark'} onClick={toggleTheme}>{theme === 'dark' ? <FaSun className="text-yellow-300 text-xl" /> : <FaMoon />}</button>
                 </div>
             </div>
         </div>

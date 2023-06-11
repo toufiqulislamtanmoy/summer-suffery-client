@@ -22,7 +22,8 @@ const AddClass = () => {
         fetch(imagHostingUrl, {
             method: "POST",
             body: formData
-        }).then(res => res.json()).then(imgRes => {
+        }).then(res => res.json())
+        .then(imgRes => {
             console.log(imgRes);
             if (imgRes.success){
                 const imgurl = imgRes.data.display_url;
@@ -55,10 +56,15 @@ const AddClass = () => {
                     icon: 'error',
                     title: 'Oops... IMGBB Server Did Not Responce Try Some Time Later',
                     text: 'Something went wrong!',
-                    footer: '<a href="">Why do I have this issue?</a>'
                   })
             }
-        })
+        }).catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: `Oops... ${error} server did not response try after some time`,
+                text: 'Something went wrong!',
+              })      
+        });
 
     }
     return (

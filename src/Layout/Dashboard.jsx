@@ -1,4 +1,13 @@
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import {
+    FaPlusCircle,
+    FaInfoCircle,
+    FaUserSlash,
+    FaBookReader,
+    FaHistory
+} from "react-icons/fa"
+
+import { BsFillPatchCheckFill,BsCartCheckFill } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import useAdmin from "../hooks/useAdmin";
@@ -24,24 +33,24 @@ const Dashboard = () => {
         navItems = (
             <>
 
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/manageClasses">Manage Classes</NavLink></li>
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/allusers">Manage Users</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/manageClasses">Manage Classes <FaBookReader/></NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/allusers">Manage Users <FaUserSlash/></NavLink></li>
             </>
         );
     } else if (isInstructor) {
         navItems = (
             <>
 
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/addClass">Add Class</NavLink></li>
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/myClass">My Class</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/myClass">My Class <FaInfoCircle/></NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/addClass">Add Class <FaPlusCircle/></NavLink></li>
             </>
         );
     } else {
         navItems = (
             <>
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/selectedClasses">Selected Classes</NavLink></li>
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/enrollClasses">Enroll Classes</NavLink></li>
-                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/paymentHistory">Payment History</NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/selectedClasses">Selected Classes <BsCartCheckFill/></NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/enrollClasses">Enroll Classes <BsFillPatchCheckFill className="text-blue-400"/> </NavLink></li>
+                <li><NavLink className={({ isActive }) => (isActive ? 'text-[#7E90FE]' : '')} to="/dashboard/paymentHistory">Payment History<FaHistory/></NavLink></li>
             </>
         );
     }

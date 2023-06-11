@@ -14,7 +14,7 @@ const TopClasses = () => {
     return (
         <div className="my-20">
             <SectionTitle title="Popular Classes"/>
-            <div className="my-20 grid grid-cols-1 lg:grid-cols-3  gap-5 lg:px-10 px-5 lg:max-w-[80vw] mx-auto">
+            <div className="my-20 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-5 lg:px-10 px-5 lg:max-w-[80vw] mx-auto">
                 {
                     popularClass.slice(0,6).map(pclass => <ClassesCard key={pclass._id} approvedClasses={pclass}/>)
                 }
