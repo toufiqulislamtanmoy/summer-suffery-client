@@ -15,7 +15,7 @@ const SelectedClassDetails = ({ courseDetails, refetch }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/selectedClass/${id}`, {
+                fetch(`https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app/selectedClass/${id}`, {
                     method: "DELETE"
                 }).then(res => res.json()).then(data => {
                     if (data.deletedCount > 0) {
