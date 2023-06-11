@@ -18,7 +18,7 @@ Summer Suffery is an innovative online platform for summer camps that focuses on
 
 5. **Popular Instructors**: Discover popular instructors based on the number of enrolled students across their classes.
 
-## Technology Used
+## Package & Technology Used
 
 The Summer Suffery website is developed using the following technologies and packages:
 
@@ -27,6 +27,13 @@ The Summer Suffery website is developed using the following technologies and pac
 - **Express**: A minimalist web application framework for Node.js used for building the backend API.
 - **Axios**: A JavaScript library used for making API requests from the frontend to the backend.
 - **DaisiUI**: A user interface library that provides pre-designed components and styles for creating a visually appealing website.
+- **React From Hook**: Use for easy to maintain from validation
+- **AOS**: Use for creating beautiful animations
+- **React Icons**: Use react icon for symbols and icons
+- **Moment**: Use moment for formating date and time
+- **React Awesome Slider**: Use for top header banner
+- **React-Fast-Marquee**: Use for display feedback
+- **React-Rating**: Use for display display the rating
 
 ## Live Site
 
