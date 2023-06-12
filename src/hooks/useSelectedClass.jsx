@@ -8,7 +8,7 @@ const useSelectedClass = () => {
         queryKey: ['selectedClasses', user?.email],
         enabled: !loading,
         queryFn: async () => {
-            const res = await fetch(`https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app/selectedClass?email=${user?.email}`);
+            const res = await fetch(`https://summer-suffry-server.vercel.app/selectedClass?email=${user?.email}`);
             return res.json();
         }
     })

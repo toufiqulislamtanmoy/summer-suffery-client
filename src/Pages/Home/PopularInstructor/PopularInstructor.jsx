@@ -4,7 +4,7 @@ import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 const PopularInstructor = () => {
     const [popularInstructor, setPopularInstructor] = useState([]);
     useEffect(() => {
-        fetch("https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app/popularInstructor").then(res => res.json()).then(data => {
+        fetch("https://summer-suffry-server.vercel.app/popularInstructor").then(res => res.json()).then(data => {
             console.log(data);
             setPopularInstructor(data);
         })

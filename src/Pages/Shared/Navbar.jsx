@@ -11,7 +11,7 @@ const Navbar = () => {
     const [role, setRole] = useState([]);
 
     useEffect(() => {
-        fetch(`https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app/role/${user?.email}`).then(res => res.json()).then(data => {
+        fetch(`https://summer-suffry-server.vercel.app/role/${user?.email}`).then(res => res.json()).then(data => {
             console.log(data)
             setRole(data.role);
         })

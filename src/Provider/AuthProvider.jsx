@@ -58,7 +58,7 @@ const AuthProvider = ( {children}) => {
             setUser(logedUser);
             console.log('From on Auth state change', logedUser);
             if(logedUser){
-                axios.post('https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app/jwt',{email:logedUser.email}).then(data => {
+                axios.post('https://summer-suffry-server.vercel.app/jwt',{email:logedUser.email}).then(data => {
                     localStorage.setItem("data-access-token",data.data.token);
                     setLoading(false)
                 })

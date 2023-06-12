@@ -15,7 +15,7 @@ const ButtonPrivet = ({ approvedClasses,refetch }) => {
   // find the user role here
   // to do make this api call with hooks
   useEffect(() => {
-    fetch(`https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app/users/${user?.email}`).then(res => res.json()).then(data => setUserRole(data.role))
+    fetch(`https://summer-suffry-server.vercel.app/users/${user?.email}`).then(res => res.json()).then(data => setUserRole(data.role))
   }, [user])
   // console.log(approvedClasses)
   const handleButtonClick = () => {
@@ -34,7 +34,7 @@ const ButtonPrivet = ({ approvedClasses,refetch }) => {
           seats
         }
         console.log(selectedClass);
-        fetch('https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app/selectedClass',{
+        fetch('https://summer-suffry-server.vercel.app/selectedClass',{
                 method:"POST",
                 headers:{
                     'content-type':'application/json'

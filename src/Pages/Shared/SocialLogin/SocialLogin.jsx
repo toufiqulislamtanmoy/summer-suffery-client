@@ -17,7 +17,7 @@ const SocialLogin = () => {
             console.log(user);
 
             const saveUser = { name: user.displayName, photo:user.photoURL, email: user.email,role:'user' }
-            fetch("https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app/users", {
+            fetch("https://summer-suffry-server.vercel.app/users", {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'
