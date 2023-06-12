@@ -5,7 +5,8 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 
 const axiosSecure = axios.create({
-  baseURL: 'https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app', 
+  baseURL: 'https://summer-suffry-server-6jyo24tbl-toufiqulislamtanmoy.vercel.app' 
+  // baseURL: 'http://localhost:5000' 
 });
 
 
